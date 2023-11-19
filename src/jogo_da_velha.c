@@ -54,10 +54,10 @@ int realizar_jogada(int jogador) {
             if (linha >= 0 && linha < 3 && coluna >= 0 && coluna < 3 && tabuleiro[linha][coluna] == VAZIO) {
                 break;  // Jogada válida, sair do loop
             } else {
-                printf("Posição inválida ou já ocupada. Tente novamente.\n");
+                printf("Posicao invalida ou ja ocupada. Tente novamente.\n");
             }
         } else {
-            printf("Entrada inválida. Digite dois números separados por espaço.\n");
+            printf("Entrada invalida. Digite dois numeros separados por espaço.\n");
 
             // Limpar o buffer do teclado para evitar problemas com entradas inválidas
             while (getchar() != '\n');
