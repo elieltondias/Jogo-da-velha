@@ -3,23 +3,27 @@
 #include <string.h>
 #include "jogo_da_velha.h"
 
+// Definição do tamanho do nome dos jogadores
 char jogador1_nome[TAMANHO_NOME];
 char jogador2_nome[TAMANHO_NOME];
+
+// Representação do tabuleiro do jogo
 int tabuleiro[3][3];
 
 // Implementações das funções do jogo
 
-void exibir_tabuleiro(){
+// Função para exibir o estado atual do tabuleiro
+void exibir_tabuleiro() {
     limpar_tela();
     printf("  1 2 3\n");
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         printf("%d ", i + 1);
-        for (int j = 0; j < 3; j++){
-            if (tabuleiro[i][j] == X){
+        for (int j = 0; j < 3; j++) {
+            if (tabuleiro[i][j] == X) {
                 printf("X|");
-            } else if (tabuleiro[i][j] == O){
+            } else if (tabuleiro[i][j] == O) {
                 printf("O|");
-            } else{
+            } else {
                 printf("_|");
             }
         }
@@ -28,14 +32,16 @@ void exibir_tabuleiro(){
     printf("\n");
 }
 
-void inicializar_tabuleiro(){
-    for (int i = 0; i < 3; i++){
+// Função para inicializar o tabuleiro com espaços vazios
+void inicializar_tabuleiro() {
+    for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             tabuleiro[i][j] = VAZIO;
         }
     }
 }
 
+// Função para realizar uma jogada de um jogador específico
 int realizar_jogada(int jogador) {
     int linha, coluna;
 
@@ -50,14 +56,14 @@ int realizar_jogada(int jogador) {
             linha--;
             coluna--;
 
-            // Verificar se a posição está dentro dos limites
+            // Verificar se a posição está dentro dos limites e vazia
             if (linha >= 0 && linha < 3 && coluna >= 0 && coluna < 3 && tabuleiro[linha][coluna] == VAZIO) {
                 break;  // Jogada válida, sair do loop
             } else {
                 printf("Posicao invalida ou ja ocupada. Tente novamente.\n");
             }
         } else {
-            printf("Entrada invalida. Digite dois numeros separados por espaço.\n");
+            printf("Entrada invalida. Digite dois numeros separados por espaco.\n");
 
             // Limpar o buffer do teclado para evitar problemas com entradas inválidas
             while (getchar() != '\n');
@@ -69,37 +75,42 @@ int realizar_jogada(int jogador) {
     return verificar_vencedor();
 }
 
-int verificar_vencedor(){
-    for (int i = 0; i < 3; i++){
-        if (tabuleiro[i][0] != VAZIO && tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][0] == tabuleiro[i][2]){
+// Função para verificar se há um vencedor
+int verificar_vencedor() {
+    for (int i = 0; i < 3; i++) {
+        // Verificar linhas e colunas
+        if (tabuleiro[i][0] != VAZIO && tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][0] == tabuleiro[i][2]) {
             return tabuleiro[i][0];
         }
-        if (tabuleiro[0][i] != VAZIO && tabuleiro[0][i] == tabuleiro[1][i] && tabuleiro[0][i] == tabuleiro[2][i]){
+        if (tabuleiro[0][i] != VAZIO && tabuleiro[0][i] == tabuleiro[1][i] && tabuleiro[0][i] == tabuleiro[2][i]) {
             return tabuleiro[0][i];
         }
     }
 
-    if (tabuleiro[0][0] != VAZIO && tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[0][0] == tabuleiro[2][2]){
+    // Verificar diagonais
+    if (tabuleiro[0][0] != VAZIO && tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[0][0] == tabuleiro[2][2]) {
         return tabuleiro[0][0];
     }
-    if (tabuleiro[0][2] != VAZIO && tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[0][2] == tabuleiro[2][0]){
+    if (tabuleiro[0][2] != VAZIO && tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[0][2] == tabuleiro[2][0]) {
         return tabuleiro[0][2];
     }
 
-    return 0;
+    return 0;  // Nenhum vencedor ainda
 }
 
-int tabuleiro_cheio(){
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            if (tabuleiro[i][j] == VAZIO){
-                return 0;
+// Função para verificar se o tabuleiro está cheio (empate)
+int tabuleiro_cheio() {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (tabuleiro[i][j] == VAZIO) {
+                return 0;  // Ainda há espaços vazios
             }
         }
     }
-    return 1;
+    return 1;  // Tabuleiro está cheio
 }
 
-void limpar_tela(){
+// Função para limpar a tela (dependente do sistema operacional)
+void limpar_tela() {
     system("cls || clear");
 }
