@@ -36,7 +36,7 @@ int main() {
         }
 
         // Pergunta aos jogadores se querem jogar novamente
-        printf("Deseja jogar novamente? (1 para sim, 0 para não): ");
+        printf("Deseja jogar novamente? (1 para sim, 0 para nao): ");
         scanf("%d", &jogar_novamente);
 
         limpar_tela();
