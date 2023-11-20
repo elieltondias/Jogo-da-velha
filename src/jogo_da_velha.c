@@ -16,9 +16,10 @@ int tabuleiro[3][3];
 void exibir_tabuleiro() {
     limpar_tela();
     printf("  1 2 3\n");
-    for (int i = 0; i < 3; i++) {
+    int i, j;
+    for (i = 0; i < 3; i++) {
         printf("%d ", i + 1);
-        for (int j = 0; j < 3; j++) {
+        for (j = 0; j < 3; j++) {
             if (tabuleiro[i][j] == X) {
                 printf("X|");
             } else if (tabuleiro[i][j] == O) {
@@ -34,8 +35,9 @@ void exibir_tabuleiro() {
 
 // Função para inicializar o tabuleiro com espaços vazios
 void inicializar_tabuleiro() {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    int i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             tabuleiro[i][j] = VAZIO;
         }
     }
@@ -77,7 +79,8 @@ int realizar_jogada(int jogador) {
 
 // Função para verificar se há um vencedor
 int verificar_vencedor() {
-    for (int i = 0; i < 3; i++) {
+    int i;
+    for (i = 0; i < 3; i++) {
         // Verificar linhas e colunas
         if (tabuleiro[i][0] != VAZIO && tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][0] == tabuleiro[i][2]) {
             return tabuleiro[i][0];
@@ -100,8 +103,9 @@ int verificar_vencedor() {
 
 // Função para verificar se o tabuleiro está cheio (empate)
 int tabuleiro_cheio() {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    int i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             if (tabuleiro[i][j] == VAZIO) {
                 return 0;  // Ainda há espaços vazios
             }
