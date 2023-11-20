@@ -7,7 +7,7 @@ int main() {
     limpar_tela();  // Limpa a tela do console
 
     while (jogar_novamente) {
-        printf("\tBEM-VINDO AO JOGO DA VELHA\n\n");
+        printf("\tJOGO DA VELHA\n\n");
 
         printf("Digite o nome do Jogador 1: ");
         scanf("%s", jogador1_nome);
